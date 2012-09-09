@@ -5,16 +5,32 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 
+/**
+ * A utility class particularly related to a user.
+ * 
+ * @author ecolban
+ *
+ */
 public class User {
 
 	private final static Pattern USERNAME_PATTERN = Pattern
 			.compile("^\\w{3,15}$");
 
+	public final static String USERNAME_ERROR_MESSAGE = "That's not a valid username. "
+			+ "User names must be 3 to 15 characters long and may only contain letters, "
+			+ "digits and underscores.";
+
 	private final static Pattern PASSWORD_PATTERN = Pattern
 			.compile("^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,15})$");
 
+	public final static String PASSWORD_ERROR_MESSAGE = "That's not a valid password. "
+			+ "Passwords must be 6-15 characters long, must contain a lower case and "
+			+ "an upper case letter, a digit, and a character that is neither a letter "
+			+ "or a digit.";
+
 	private final static Pattern EMAIL_PATTERN = Pattern
 			.compile("^\\w+(\\.\\w+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+	public final static String EMAIL_ERROR_MESSAGE = "That's not a valid email.";
 
 	public final static String COOKIE_NAME = "user";
 

@@ -12,17 +12,33 @@ import javax.servlet.http.*;
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 
+	/**
+	 * Error message to display if the user types an invalid user name or
+	 * password or both
+	 */
 	private static final String ERROR_MESSAGE = "Invalid login!";
-	
+
+	/**
+	 * The name of the parameter that holds the user name.
+	 */
 	public static final String USERNAME_PARAM = "username";
+	/**
+	 * The name of the parameter that holds the password.
+	 */
 	public static final String PASSWORD_PARAM = "password";
+	/**
+	 * The name of an attribute used to hold the user name.
+	 */
 	public static final String USERNAME_ATTRIBUTE = "username";
+	/**
+	 * The name of an attribute used to hold the error message.
+	 */
 	public static final String ERROR_ATTRIBUTE = "error";
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		request.setAttribute("error", "");
+		request.setAttribute(ERROR_ATTRIBUTE, "");
 		RequestDispatcher view = request
 				.getRequestDispatcher("/view/login.jsp");
 		response.setContentType("text/html");
@@ -53,13 +69,21 @@ public class LoginServlet extends HttpServlet {
 		}
 		response.setContentType("text/html");
 		request.setAttribute(USERNAME_ATTRIBUTE, userName);
-		request.setAttribute("error", errorMessage);
+		request.setAttribute(ERROR_ATTRIBUTE, errorMessage);
 
 		RequestDispatcher view = request
 				.getRequestDispatcher("/view/login.jsp");
 		view.forward(request, response);
 	}
 
+	/**
+	 * Checks if a user name is valid, and if it is not return an error message.
+	 * 
+	 * @param username
+	 *            the user name to check.
+	 * @return an error message if the user name is not valid, or null if it is
+	 *         valid.
+	 */
 	private String validateUsername(String username) {
 		if (User.isValidUsername(username)) {
 			return null;
@@ -68,6 +92,14 @@ public class LoginServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Checks if a password is valid, and if it is not return an error message.
+	 * 
+	 * @param password
+	 *            the password to check.
+	 * @return an error message if the password is not valid, or null if it is
+	 *         valid.
+	 */
 	private String validatePassword(String password) {
 		if (User.isValidPassword(password)) {
 			return null;

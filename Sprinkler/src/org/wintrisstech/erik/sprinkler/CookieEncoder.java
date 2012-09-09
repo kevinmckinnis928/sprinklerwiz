@@ -5,18 +5,51 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.Cookie;
 
+/**
+ * Utility class to encode and decode cookies, and retrieving an encoded cookie
+ * value.
+ * 
+ * @author ecolban
+ * 
+ */
 public class CookieEncoder {
 
-	private static byte[] COOKIE_SECRET = "cookieSecr3t".getBytes();
+	private static byte[] COOKIE_SECRET = "cookieSecr3t".getBytes(); // It
 
-	public static boolean check(Cookie cookie) throws InvalidKeyException,
-			NoSuchAlgorithmException {
+	// would have been smarter to have this value regenerated randomly after
+	// some time.
+
+	/**
+	 * Checks that a cookie is valid.
+	 * 
+	 * @param cookie
+	 *            the given cookie
+	 * @return true if the cookie is valid
+	 */
+	public static boolean check(Cookie cookie) {
 
 		String value = cookie.getValue();
 		String s = value.split("\\|")[0];
-		return value.equals(s + "|" + Crypto.encode(s, COOKIE_SECRET));
+		try {
+			return value.equals(s + "|" + Crypto.encode(s, COOKIE_SECRET));
+		} catch (InvalidKeyException e) {
+			return false;
+		} catch (NoSuchAlgorithmException e) {
+			return false;
+		}
 	}
 
+	/**
+	 * Encodes a cookie. The result consists of the original cookie value
+	 * followed by a HMAC.
+	 * 
+	 * @param cookie
+	 *            the cookie to encode
+	 * @throws NoSuchAlgorithmException
+	 *             if the HMAC computation fails
+	 * @throws InvalidKeyException
+	 *             if the HMAC computation fails
+	 */
 	public static void encode(Cookie cookie) throws NoSuchAlgorithmException,
 			InvalidKeyException {
 		String value = cookie.getValue();
@@ -33,16 +66,9 @@ public class CookieEncoder {
 		}
 		if (cookies != null) {
 			for (Cookie c : cookies) {
-				try {
-					if (name.equals(c.getName())  && CookieEncoder.check(c))
-					{
-						return CookieEncoder.decode(c);
-					}
-				} catch (InvalidKeyException e) {
-				 break;
-				 } catch (NoSuchAlgorithmException e) {
-				 break;
-				 }
+				if (name.equals(c.getName()) && CookieEncoder.check(c)) {
+					return CookieEncoder.decode(c);
+				}
 			}
 		}
 		return null;

@@ -6,13 +6,19 @@ import javax.servlet.http.*;
 
 ;
 
+/**
+ * A servlet that handles a logout request.
+ * 
+ * 
+ * @author ecolban
+ *
+ */
 @SuppressWarnings("serial")
 public class LogoutServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		response.setContentType("text/html");
 		Cookie cookie = new Cookie(User.COOKIE_NAME, "");
 		cookie.setPath("/");
 		response.addCookie(cookie);

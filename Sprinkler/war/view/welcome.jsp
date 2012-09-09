@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="org.wintrisstech.erik.sprinkler.WelcomeServlet"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,9 +11,7 @@
 </head>
 <body>
 	<%
-		if (request.getAttribute("username") != null) {
-			/* pageContext.setAttribute("username",
-					request.getAttribute("username")); */
+		if (request.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE) != null) {
 	%>
 	<div align="right">
 		${username} (<a class="login-link" href="logout">logout</a>)
