@@ -81,9 +81,7 @@ public class RegistrationServlet extends HttpServlet {
 			try {
 				long id = UserDataAccess.addUser(userName, password, email);
 				if (id > 0L) {
-					Cookie cookie = new Cookie(User.COOKIE_NAME, "" + id);
-					CookieEncoder.encode(cookie);
-					cookie.setPath("/");
+					Cookie cookie = User.getCookie(id);
 					response.addCookie(cookie);
 					response.sendRedirect("/");
 					return;

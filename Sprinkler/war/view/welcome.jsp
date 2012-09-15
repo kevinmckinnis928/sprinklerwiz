@@ -11,6 +11,8 @@
 </head>
 <body>
 	<%
+		pageContext.setAttribute("username", request
+				.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE));
 		if (request.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE) != null) {
 	%>
 	<div align="right">

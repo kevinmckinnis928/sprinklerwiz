@@ -55,9 +55,7 @@ public class LoginServlet extends HttpServlet {
 			long id = UserDataAccess.getUserId(userName, password);
 			try {
 				if (id > 0) {
-					Cookie cookie = new Cookie(User.COOKIE_NAME, "" + id);
-					CookieEncoder.encode(cookie);
-					cookie.setPath("/");
+					Cookie cookie = User.getCookie(id);
 					response.addCookie(cookie);
 					response.sendRedirect("/");
 					return;

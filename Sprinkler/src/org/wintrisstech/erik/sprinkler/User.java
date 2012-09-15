@@ -1,5 +1,7 @@
 package org.wintrisstech.erik.sprinkler;
 
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,7 +11,7 @@ import javax.servlet.http.Cookie;
  * A utility class particularly related to a user.
  * 
  * @author ecolban
- *
+ * 
  */
 public class User {
 
@@ -50,16 +52,24 @@ public class User {
 	}
 
 	public static String getUserName(Cookie[] cookies) {
-		String idAsString = CookieEncoder.getCookieValue(cookies, COOKIE_NAME);
-		if (idAsString != null) {
+		String value = CookieEncoder.getCookieValue(cookies, COOKIE_NAME);
+		if (value != null) {
 			try {
-				long id = Long.parseLong(idAsString);
+				long id = Long.parseLong(value);
 				return UserDataAccess.getUserName(id);
 			} catch (NumberFormatException ex) {
 				return null;
 			}
 		}
 		return null;
+	}
+
+	public static Cookie getCookie(long id)
+			throws InvalidKeyException, NoSuchAlgorithmException {
+		Cookie cookie = new Cookie(User.COOKIE_NAME, "" + id);
+		CookieEncoder.encode(cookie);
+		cookie.setPath("/");
+		return cookie;
 	}
 
 }

@@ -10,15 +10,15 @@ import javax.servlet.http.*;
  * A servlet that handles requests for the welcome page.
  * 
  * @author ecolban
- *
+ * 
  */
 @SuppressWarnings("serial")
 public class WelcomeServlet extends HttpServlet {
 
+	// private static final Logger logger =
+	// Logger.getLogger(WelcomeServlet.class
+	// .getName());
 
-//	private static final Logger logger = Logger.getLogger(WelcomeServlet.class
-//			.getName());
-	
 	/**
 	 * The name of an attribute used to hold the user name.
 	 */
@@ -28,16 +28,9 @@ public class WelcomeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		Cookie[] cookies = request.getCookies();
-		String idAsString = CookieEncoder
-				.getCookieValue(cookies, "user");
-		if (idAsString != null) {
-			String userName = null;
-			try {
-				long id = Long.parseLong(idAsString);
-				userName = UserDataAccess.getUserName(id);
-				request.setAttribute(USERNAME_ATTRIBUTE, "" + userName);
-			} catch (NumberFormatException ex) {
-			}
+		String userName = User.getUserName(cookies);
+		if (userName != null) {
+			request.setAttribute(USERNAME_ATTRIBUTE, "" + userName);
 		}
 		RequestDispatcher view = request
 				.getRequestDispatcher("/view/welcome.jsp");
