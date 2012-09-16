@@ -26,9 +26,8 @@ public class User {
 			.compile("^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,15})$");
 
 	public final static String PASSWORD_ERROR_MESSAGE = "That's not a valid password. "
-			+ "Passwords must be 6-15 characters long, must contain a lower case and "
-			+ "an upper case letter, a digit, and a character that is neither a letter "
-			+ "or a digit.";
+			+ "Passwords must be 6-15 characters long, must contain at least one lower case letter, "
+			+ "one upper case letter, and one digit.";
 
 	private final static Pattern EMAIL_PATTERN = Pattern
 			.compile("^\\w+(\\.\\w+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
