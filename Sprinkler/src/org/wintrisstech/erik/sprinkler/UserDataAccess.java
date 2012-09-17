@@ -41,6 +41,7 @@ public class UserDataAccess {
 	private final static String PASSWORD_PROPERTY = "password";
 	private final static String SALT_PROPERTY = "salt";
 	private final static String EMAIL_PROPERTY = "email";
+	private final static int DEFAULT_SALT_LENGTH = 5;
 
 	/**
 	 * Add a user entity to the data store. Checks if a user with the same user
@@ -91,7 +92,7 @@ public class UserDataAccess {
 	 * @return
 	 */
 	private static byte[] generateSalt() {
-		byte[] result = new byte[5];
+		byte[] result = new byte[DEFAULT_SALT_LENGTH];
 		random.nextBytes(result);
 		return result;
 	}
