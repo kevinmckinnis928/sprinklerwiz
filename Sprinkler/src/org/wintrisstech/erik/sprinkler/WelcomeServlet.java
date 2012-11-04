@@ -15,9 +15,8 @@ import javax.servlet.http.*;
 @SuppressWarnings("serial")
 public class WelcomeServlet extends HttpServlet {
 
-	// private static final Logger logger =
-	// Logger.getLogger(WelcomeServlet.class
-	// .getName());
+//	private static final Logger logger = Logger.getLogger(WelcomeServlet.class
+//			.getName());
 
 	/**
 	 * The name of an attribute used to hold the user name.

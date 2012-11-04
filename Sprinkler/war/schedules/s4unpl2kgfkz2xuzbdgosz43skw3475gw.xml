@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<!-- Mon, Wed, Fri -->
+	<schedule day_of_week="1,2,3,4,5,6,7">
+		<action on="2,3" time="00:00:00" />
+		<action on="1,4" time="01:00:00" />
+		<action on="0,5" time="02:00:00" />
+		<action off="2,3" time="03:00:00" />
+		<action off="1,4" time="04:00:00" />
+		<action off="0,5" time="05:00:00" />
+		<action on="2,3" time="06:00:00" />
+		<action on="1,4" time="07:00:00" />
+		<action on="0,5" time="08:00:00" />
+		<action off="2,3" time="09:00:00" />
+		<action off="1,4" time="10:00:00" />
+		<action off="0,5" time="11:00:00" />
+		<action on="2,3" time="12:00:00" />
+		<action on="1,4" time="13:00:00" />
+		<action on="0,5" time="14:00:00" />
+		<action off="2,3" time="15:00:00" />
+		<action off="1,4" time="16:00:00" />
+		<action off="0,5" time="17:00:00" />
+		<action on="2,3" time="18:00:00" />
+		<action on="1,4" time="19:00:00" />
+		<action on="0,5" time="20:00:00" />
+		<action off="2,3" time="21:00:00" />
+		<action off="1,4" time="22:00:00" />
+		<action off="0,5" time="23:00:00" />
+	</schedule>
+</root>

@@ -11,18 +11,18 @@
 </head>
 <body>
 	<%
-		pageContext.setAttribute("username", request
-				.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE));
+		/* pageContext.setAttribute("username", request
+				.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE)); */
 		if (request.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE) != null) {
 	%>
 	<div align="right">
-		${username} (<a class="login-link" href="logout">logout</a>)
+		${username} (<a class="login-link" href="/logout">logout</a>)
 	</div>
 	<%
 		} else {
 	%>
 	<div align="right">
-		<a class="login-link" href="login">login</a>, <a class="login-link"
+		<a class="login-link" href="/login">login</a>, <a class="login-link"
 			href="register">register</a>
 	</div>
 	<%
