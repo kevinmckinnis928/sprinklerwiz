@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel=stylesheet href="/stylesheet/main.css" type="text/css">
-<title>Welcome</title>
+<title>Sprinkler Registration</title>
 </head>
 <body>
 	<%
@@ -17,34 +17,10 @@
 	%>
 	<div align="right">
 		${username} (<a class="login-link" href="/logout">logout</a>)
-
-	</div>
-	<%
-		} else {
-	%><d iv align="right"> <a class="login-link" href="/login">login</a>,
-	<a class="login-link" href="register">register</a>
 	</div>
 	<%
 		}
 	%>
-	<div class="main-title">Welcome</div>
-	<%
-		if (request.getAttribute(WelcomeServlet.USERNAME_ATTRIBUTE) != null) {
-			if (request
-					.getAttribute(WelcomeServlet.SPRINKLER_NAME_ATTRIBUTE) != null) {
-	%>
-	<p>
-		Your sprinkler is: <a href="/edit">${sprinkler_name}</a>
-		<%
-			} else {
-		%>
+	<div class="main-title">Register you sprinkler</div>
 	
-	<p>
-		<a href="/sprinkler">Register your sprinkler</a>
-		<%
-			}
-			}
-		%>
-	
-</body>
 </html>

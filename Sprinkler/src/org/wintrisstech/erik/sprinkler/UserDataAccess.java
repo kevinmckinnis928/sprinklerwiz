@@ -38,6 +38,7 @@ public class UserDataAccess {
 	private static final Random random = new Random();
 	private final static String USER_KIND = "user_kind";
 	private final static String USERNAME_PROPERTY = "username";
+	private final static String SPRINKLER_NAME_PROPERTY = "sprinkler_name";
 	private final static String PASSWORD_PROPERTY = "password";
 	private final static String SALT_PROPERTY = "salt";
 	private final static String EMAIL_PROPERTY = "email";
@@ -124,8 +125,10 @@ public class UserDataAccess {
 	 * the user. If the user is not found or the password is incorrect, 0L is
 	 * returned.
 	 * 
-	 * @param userName the given user name
-	 * @param password the given password
+	 * @param userName
+	 *            the given user name
+	 * @param password
+	 *            the given password
 	 * @return the id of the user or 0L
 	 */
 	public static long getUserId(String userName, String password) {
@@ -150,11 +153,17 @@ public class UserDataAccess {
 
 	/**
 	 * Gets the user name of the user with a given id.
-	 * @param id the given id.
+	 * 
+	 * @param id
+	 *            the given id.
 	 * @return the user's name
 	 */
 	public static String getUserName(long id) {
-		logger.log(Level.INFO, "Querying the datastore for user id = {0}", id);
+		logger.log(Level.INFO,
+				"Querying the datastore for user name for user id = {0}", id);
+		if(id == 0) {
+			return null;
+		}
 		Key key = KeyFactory.createKey(USER_KIND, id);
 		Entity user = null;
 		try {
@@ -164,6 +173,27 @@ public class UserDataAccess {
 		}
 		if (user != null) {
 			return (String) user.getProperty(USERNAME_PROPERTY);
+		} else {
+			return null;
+		}
+	}
+
+	public static String getSpinklerName(long id) {
+		logger.log(Level.INFO,
+				"Querying the datastore for sprinkler name for user id = {0}",
+				id);
+		if(id == 0) {
+			return null;
+		}
+		Key key = KeyFactory.createKey(USER_KIND, id);
+		Entity user = null;
+		try {
+			user = datastore.get(key);
+		} catch (EntityNotFoundException e) {
+			return null;
+		}
+		if (user != null) {
+			return (String) user.getProperty(SPRINKLER_NAME_PROPERTY);
 		} else {
 			return null;
 		}

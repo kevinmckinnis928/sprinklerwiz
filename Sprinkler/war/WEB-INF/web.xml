@@ -31,6 +31,14 @@
 		<servlet-name>Welcome</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>SprinklerRegistration</servlet-name>
+		<servlet-class>org.wintrisstech.erik.sprinkler.SprinklerRegistrationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SprinklerRegistration</servlet-name>
+		<url-pattern>/sprinkler</url-pattern>
+	</servlet-mapping>
  
  <!-- Admin stuff  -->
  <!-- ===========  -->

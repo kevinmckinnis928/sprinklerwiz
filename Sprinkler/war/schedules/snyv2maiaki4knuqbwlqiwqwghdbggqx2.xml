@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root>
+<root version="1">
 	<!-- Mon, Wed, Fri -->
 	<schedule day_of_week="2, 4, 6">
 		<action on="0, 5" time="05:30:00" />

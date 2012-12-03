@@ -50,25 +50,24 @@ public class User {
 		return m.matches();
 	}
 
-	public static String getUserName(Cookie[] cookies) {
+	public static long getId(Cookie[] cookies) {
 		String value = CookieEncoder.getCookieValue(cookies, COOKIE_NAME);
 		if (value != null) {
 			try {
 				long id = Long.parseLong(value);
-				return UserDataAccess.getUserName(id);
+				return id;
 			} catch (NumberFormatException ex) {
-				return null;
+				return 0;
 			}
 		}
-		return null;
+		return 0;
 	}
 
-	public static Cookie getCookie(long id)
-			throws InvalidKeyException, NoSuchAlgorithmException {
+	public static Cookie getCookie(long id) throws InvalidKeyException,
+			NoSuchAlgorithmException {
 		Cookie cookie = new Cookie(User.COOKIE_NAME, "" + id);
 		CookieEncoder.encode(cookie);
 		cookie.setPath("/");
 		return cookie;
 	}
-
 }
